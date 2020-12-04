@@ -11,6 +11,7 @@
     "@types/shelljs": "^0.8.8",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-bearer-token": "^2.4.0",
     "shelljs": "^0.8.4"
   }
 }
