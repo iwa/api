@@ -4,5 +4,13 @@
   "description": "Personnal REST API",
   "main": "build/index.js",
   "repository": "https://github.com/iwa/api.git",
-  "author": "iwa"
+  "author": "iwa",
+  "dependencies": {
+    "@types/express": "^4.17.9",
+    "@types/node": "^14.14.10",
+    "@types/shelljs": "^0.8.8",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "shelljs": "^0.8.4"
+  }
 }
