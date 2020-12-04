@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Personnal REST API",
   "main": "build/index.js",
+  "scripts": {
+    "update": "git fetch origin main && git pull origin main && rm -rf build/ && yarn && tsc"
+  },
   "repository": "https://github.com/iwa/api.git",
   "author": "iwa",
   "dependencies": {
