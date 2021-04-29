@@ -11,12 +11,17 @@
   "dependencies": {
     "@types/express": "^4.17.11",
     "@types/node": "^15.0.1",
+    "@types/pino": "^6.3.8",
     "@types/shelljs": "^0.8.8",
     "@types/ws": "^7.4.2",
     "discord.js": "^12.5.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-bearer-token": "^2.4.0",
+    "pino": "^6.11.3",
     "shelljs": "^0.8.4"
+  },
+  "devDependencies": {
+    "pino-pretty": "^4.7.1"
   }
 }
