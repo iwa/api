@@ -13,12 +13,12 @@ app.use(express.json());
 app.use(bearerToken());
 
 app.get('/app/:app', async (req, res) => {
-    if(req.token) {
-        if(req.token === TOKEN) {
+    if (req.token) {
+        if (req.token === TOKEN) {
             let pid = shell.cat(`${process.env.HOME}/.pm2/pids/${req.params.app}*.pid`);
-            if(pid.stderr)
-                return res.sendStatus(404)
-            return res.sendStatus(200)
+            if (pid.stderr)
+                return res.sendStatus(404);
+            return res.sendStatus(200);
         }
     }
     return res.sendStatus(403)
