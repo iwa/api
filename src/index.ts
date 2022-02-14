@@ -2,6 +2,8 @@ import express from 'express';
 import bearerToken from 'express-bearer-token';
 import shell from 'shelljs';
 
+import si from 'systeminformation';
+
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -17,19 +19,33 @@ app.get('/app/:app', async (req, res) => {
         if (req.token === TOKEN) {
             let pidPM2 = shell.cat(`${process.env.HOME}/.pm2/pids/${req.params.app}*.pid`);
             let pidDocker = shell.exec(`docker inspect -f '{{.State.Pid}}' ${req.params.app}`);
-            if (pidPM2.stderr && (pidDocker.stderr || pidDocker.stderr.startsWith('Error:') || pidDocker.stdout == '0'))
+            let container = isDockerRunning(req.params.app);
+
+            if (pidPM2.stderr && (pidDocker.stderr || pidDocker.stderr.startsWith('Error:') || pidDocker.stdout == '0') && !container)
                 return res.sendStatus(404);
             else
                 return res.sendStatus(200);
         }
     }
-    return res.sendStatus(403)
+    return res.sendStatus(403);
 });
 
 app.use((req, res) => {
     res.sendStatus(404);
 });
 
-app.listen(port, () => {
+app.listen(port, async () => {
     console.log(`server started at http://localhost:${port}`);
 });
+
+
+async function isDockerRunning(name: string) {
+    let containers = await si.dockerContainers(true);
+    let container = containers.find(c => c.name === name);
+
+    if(container)
+        if(container.state === 'running' || container.state === 'healthy')
+            return true;
+
+    return false;
+}
