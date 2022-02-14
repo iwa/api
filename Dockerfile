@@ -13,4 +13,6 @@ RUN yarn && yarn build
 RUN useradd -u 8877 api
 USER api
 
+EXPOSE 8080
+
 CMD ["node", "."]

@@ -2,5 +2,8 @@ version: "3.9"
 services:
   api:
     build: .
+    container_name: api
     environment:
       TOKEN: ${TOKEN}
+    expose:
+      - 8080
