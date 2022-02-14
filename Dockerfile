@@ -8,8 +8,7 @@ COPY yarn.lock /app
 COPY tsconfig.json /app
 COPY src /app/src
 
-RUN yarn
-RUN yarn build
+RUN yarn && yarn build
 
 RUN useradd -u 8877 api
 USER api
